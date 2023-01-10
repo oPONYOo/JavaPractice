@@ -1,8 +1,9 @@
 package com.example.javapractice.oop;
 
-import java.util.Arrays;
+import com.example.javapractice.oop.dto.BeverageDto;
 
 public class VendingMachineClass implements VendingMachine {
+    Object[][] things;
 
 
     public static void main(String[] args) {
@@ -12,8 +13,12 @@ public class VendingMachineClass implements VendingMachine {
 
 
     @Override
-    public void fillingMachine(Object[][] objects) {
-        System.out.println(Arrays.deepToString(objects));
+    public void fillingMachine(Object[][] things) {
+        this.things = things;
+        if (things[0][0] instanceof BeverageDto) {
+            System.out.println("음료수" );
+        }
+
     }
 
     @Override
