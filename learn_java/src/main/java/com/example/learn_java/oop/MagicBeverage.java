@@ -1,5 +1,6 @@
-package com.example.javapractice.oop;
+package com.example.learn_java.oop;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class MagicBeverage extends FinishedVendingMachine {
@@ -7,9 +8,10 @@ public class MagicBeverage extends FinishedVendingMachine {
     private final Integer count;
 
     public static void main(String[] args) {
-        VendingMachine vendingMachine = new VendingMachine(new MagicBeverage(3, 10));
+        VendingMachine vendingMachine = new VendingMachine(new MagicBeverage(3, 3));
         // 버튼 3개, 수량 10개씩
         vendingMachine.fillingMachine();
+        System.out.println(Arrays.deepToString(vendingMachine.getStocks()));
     }
 
     public MagicBeverage(int button, int count) {
@@ -34,7 +36,7 @@ public class MagicBeverage extends FinishedVendingMachine {
 
     @Override
     protected Thing[][] setCount() {
-
+        System.out.println("setCount");
         Thing[][] beverageArray = new Thing[button][count];
 
         for (int i = 0; i < button; i++) {

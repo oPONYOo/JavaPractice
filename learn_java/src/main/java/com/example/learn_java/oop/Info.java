@@ -1,4 +1,4 @@
-package com.example.javapractice.oop;
+package com.example.learn_java.oop;
 
 public interface Info {
     void showInfo();

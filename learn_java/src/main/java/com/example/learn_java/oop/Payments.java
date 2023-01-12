@@ -1,4 +1,4 @@
-package com.example.javapractice.oop;
+package com.example.learn_java.oop;
 
 public interface Payments {
 // 현금, 카드, 쿠폰
