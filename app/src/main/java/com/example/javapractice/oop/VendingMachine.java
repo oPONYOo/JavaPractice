@@ -1,17 +1,25 @@
 package com.example.javapractice.oop;
 
-public interface VendingMachine {
-    void fillingMachine(Object[][] objects);
+import java.util.ArrayList;
+import java.util.List;
 
-    void choiceThing(Object obj);
+public class VendingMachine {
+    private VendingMachineFunc vendingMachineFunc;
+    private List<Thing> things = new ArrayList<>();
 
-    void showPrice(int money);
 
-    int calculateMoney(int money);
+    public VendingMachine(VendingMachineFunc vendingMachineFunc) {
+        this.vendingMachineFunc = vendingMachineFunc;
+    }
 
-    Object giveThing(Object obj);
+    public List<Thing> getThings() {
+        return things;
+    }
 
-    int giveChange();
+    public Thing[][] fillingMachine() {
+        return vendingMachineFunc.fillingMachine(this);
+    }
+
 
 
 }
