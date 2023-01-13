@@ -6,11 +6,13 @@ import java.util.List;
 
 public class VendingMachine {
     private VendingMachineFunc vendingMachineFunc;
+    private Payments payments;
     private Thing[][] stocks;
 
 
     public VendingMachine(VendingMachineFunc vendingMachineFunc) {
         this.vendingMachineFunc = vendingMachineFunc;
+        this.payments = payments;
     }
 
     public Thing[][] getStocks() {
@@ -19,6 +21,10 @@ public class VendingMachine {
 
     public void fillingMachine() {
         stocks = vendingMachineFunc.fillingMachine(this);
+    }
+
+    public void pressButton() {
+
     }
 
 

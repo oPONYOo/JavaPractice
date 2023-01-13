@@ -2,7 +2,7 @@ package com.example.learn_java.oop;
 
 import java.util.Objects;
 
-public  class BasicInfo implements Info {
+public class BasicInfo implements Info {
     private String name;
     private Integer price;
 
@@ -14,8 +14,8 @@ public  class BasicInfo implements Info {
 
     @Override
     public void showInfo() {
-        System.out.println("name"+name);
-        System.out.println("name"+price);
+        System.out.println("name" + name);
+        System.out.println("name" + price);
     }
 
     @Override
