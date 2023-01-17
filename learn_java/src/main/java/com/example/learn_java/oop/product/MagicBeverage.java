@@ -6,6 +6,8 @@ import com.example.learn_java.oop.ManyWays;
 import com.example.learn_java.oop.Thing;
 import com.example.learn_java.oop.VendingMachine;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -15,7 +17,7 @@ import java.util.Scanner;
 public class MagicBeverage extends FinishedVendingMachine {
     private final Integer button;
     private final Integer count;
-
+    private Thing[][] beverageArray;
     public static void main(String[] args) {
         // 버튼 3개, 수량 10개씩, 현금, 카드 결제 가능
 
@@ -25,9 +27,19 @@ public class MagicBeverage extends FinishedVendingMachine {
         vendingMachine.setPayments();
 
 
-        // 결제 방식 선택 및 동작
-        vendingMachine.pressPaymentButton(2);
+        // 결제 방식 선택 및 동작(카드, 현금만 가능 1,2)
+        int cash = 1;
+        int card = 2;
+        boolean cardAvailable = true;
+        vendingMachine.pressPaymentButton(cash); //nextInt()로 처리하면 좋을듯
+        if (Objects.equals(vendingMachine.paymentMethod, "CARD")) {
+            vendingMachine.insertCard(cardAvailable);
+        } else  {
+            vendingMachine.insertCash(5000);
+        }
 
+        //자판기 버튼 누르기기
+       vendingMachine.pressThingButton(1); //nextInt()
 
         System.out.println(Arrays.deepToString(vendingMachine.getStocks()));
     }
@@ -55,7 +67,7 @@ public class MagicBeverage extends FinishedVendingMachine {
     @Override
     public Thing[][] setCount() {
         System.out.println("setCount");
-        Thing[][] beverageArray = new Thing[button][count];
+        beverageArray = new Thing[button][count];
 
         for (int i = 0; i < button; i++) {
             for (int j = 0; j < count; j++) {
@@ -64,7 +76,6 @@ public class MagicBeverage extends FinishedVendingMachine {
         }
         return beverageArray;
     }
-
 
 
 }

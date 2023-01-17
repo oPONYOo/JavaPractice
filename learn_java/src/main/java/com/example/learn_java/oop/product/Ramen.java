@@ -8,5 +8,10 @@ public class Ramen extends MakingVendingMachine {
     public Thing[][] setCount() {
         return new Thing[0][];
     }
+
+    /*@Override
+    public Thing pressThingButton(int num) {
+        return null;
+    }*/
     // 면에 뜨거운 물을 붓는다, 물을 버린다, 국물을 붓는다, 차슈를 올린다.
 }

@@ -1,28 +1,31 @@
 package com.example.learn_java.oop;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
-public class BasicInfo implements Info {
+public class BasicInfo implements Info { //일반적인 완제품 정보
     private String name;
-    private Integer price;
+    private int price;
 
-    public BasicInfo(String name, Integer price) {
+    public BasicInfo(String name, int price) {
         this.name = name;
         this.price = price;
     }
 
 
     @Override
-    public void showInfo() {
-        System.out.println("name" + name);
-        System.out.println("name" + price);
+    public int showInfo(Info info) {
+        System.out.println("info" + info);
+        return price;
     }
 
     @Override
     public String toString() {
+        DecimalFormat df = new DecimalFormat("###,###");
+        String money = df.format(price);
         return "BasicInfo{" +
                 "name='" + name + '\'' +
-                ", price=" + price +
+                ", price=" + money +
                 '}';
     }
 

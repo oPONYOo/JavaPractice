@@ -1,5 +1,6 @@
 package com.example.learn_java.oop;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class Thing {
@@ -10,8 +11,8 @@ public class Thing {
         this.info = info;
     }
 
-    public void showInfo() {
-        info.showInfo();
+    public int showInfo() {
+       return info.showInfo(info);
     }
 
 
