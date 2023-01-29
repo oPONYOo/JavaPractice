@@ -11,8 +11,16 @@ public class Thing {
         this.info = info;
     }
 
-    public int showInfo() {
-       return info.showInfo(info);
+    public String getInfo() {
+        return info.toString();
+    }
+
+    public int getPrice() {
+       return info.showPrice();
+    }
+
+    public String getTemp() {
+        return info.showTemperature();
     }
 
 

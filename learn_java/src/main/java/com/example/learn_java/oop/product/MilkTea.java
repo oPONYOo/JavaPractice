@@ -1,28 +1,25 @@
 package com.example.learn_java.oop.product;
 
 import com.example.learn_java.oop.BasicInfo;
-import com.example.learn_java.oop.FinishedVendingMachine;
+import com.example.learn_java.oop.MakingVendingMachine;
 import com.example.learn_java.oop.ManyWays;
 import com.example.learn_java.oop.Thing;
 import com.example.learn_java.oop.VendingMachine;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.Random;
-import java.util.Scanner;
 
-public class MagicBeverage extends FinishedVendingMachine {
+public class MilkTea extends MakingVendingMachine {
     private final Integer button;
     private final Integer count;
-    private Thing[][] beverageArray;
+    private Thing[][] milkTeaArray;
+
     public static void main(String[] args) {
         // 버튼 3개, 수량 10개씩, 현금, 카드 결제 가능
 
         ArrayList<String> ways = new ArrayList<>(Arrays.asList("CASH", "CARD"));
-        VendingMachine vendingMachine = new VendingMachine(new MagicBeverage(3, 3), new ManyWays(ways));
+        VendingMachine vendingMachine = new VendingMachine(new MilkTea(3, 3), new ManyWays(ways), "ICE");
         if (vendingMachine.fillingMachine()) {
             System.out.println(Arrays.deepToString(vendingMachine.getStocks()));
 
@@ -33,7 +30,7 @@ public class MagicBeverage extends FinishedVendingMachine {
             int cash = 1;
             int card = 2;
             boolean cardAvailable = true;
-            vendingMachine.pressPaymentButton(cash); //nextInt()로 처리하면 좋을듯
+            vendingMachine.pressPaymentButton(card); //nextInt()로 처리하면 좋을듯
             if (Objects.equals(vendingMachine.paymentMethod, "CARD")) {
                 vendingMachine.insertCard(cardAvailable);
             } else  {
@@ -47,38 +44,38 @@ public class MagicBeverage extends FinishedVendingMachine {
 
     }
 
-    public MagicBeverage(int button, int count) {
+    public MilkTea(int button, int count) {
         this.button = button;
         this.count = count;
     }
 
 
 
-    private Thing randomBeverageCategory() {
-        Thing coke = new Thing(new BasicInfo("펩시", 1000));
-        Thing water = new Thing(new BasicInfo("물", 700));
-        Thing sprite = new Thing(new BasicInfo("스프라이트", 1200));
-        Thing[] categoryList = {coke, water, sprite};
-        int min = 0;
-        int max = categoryList.length;
 
-        Random random = new Random();
-        int value = random.nextInt(max + min) + min;
-        return categoryList[value];
+    // 면에 뜨거운 물을 붓는다, 물을 버린다, 국물을 붓는다, 차슈를 올린다.
+
+
+
+    private Thing milkTeaCategory() {
+        Thing black = new Thing(new BasicInfo("black", 5000, "HOT"));
+        Thing taro = new Thing(new BasicInfo("taro", 4000, "ICE"));
+        Thing greenTea = new Thing(new BasicInfo("greenTea", 6000, "ICE"));
+        Thing[] categoryList = {black, taro, greenTea};
+
+        return black;
     }
+
 
     @Override
     public Thing[][] setCount() {
         System.out.println("setCount");
-        beverageArray = new Thing[button][count];
+        milkTeaArray = new Thing[button][count];
 
         for (int i = 0; i < button; i++) {
             for (int j = 0; j < count; j++) {
-                beverageArray[i][j] = randomBeverageCategory();
+                milkTeaArray[i][j] = milkTeaCategory();
             }
         }
-        return beverageArray;
+        return milkTeaArray;
     }
-
-
 }
