@@ -1,19 +1,18 @@
 package com.example.learn_java.oop;
 
-import java.text.DecimalFormat;
 import java.util.Objects;
 
-public class BasicInfo implements Info {
-    private String name;
-    private int price;
+public class BasicInfo<T extends CharSequence, M extends Integer> implements Info {
+    private final T name;
+    private final M price;
     private String temperature;
 
-    public BasicInfo(String name, int price) { //일반적인 완제품 정보
+    public BasicInfo(T name, M price) { //일반적인 완제품 정보
         this.name = name;
         this.price = price;
     }
 
-    public BasicInfo(String name, int price, String temperature) {
+    public BasicInfo(T name, M price, String temperature) {
         this.name = name;
         this.price = price;
         this.temperature = temperature;

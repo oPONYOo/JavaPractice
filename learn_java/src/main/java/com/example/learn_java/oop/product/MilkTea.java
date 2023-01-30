@@ -33,12 +33,12 @@ public class MilkTea extends MakingVendingMachine {
             vendingMachine.pressPaymentButton(card); //nextInt()로 처리하면 좋을듯
             if (Objects.equals(vendingMachine.paymentMethod, "CARD")) {
                 vendingMachine.insertCard(cardAvailable);
-            } else  {
+            } else {
                 vendingMachine.insertCash(5000);
             }
 
             //자판기 버튼 누르기기
-            vendingMachine.pressThingButton(1); //nextInt()
+            vendingMachine.pressThingButton(0); //nextInt()
         }
 
 
@@ -49,18 +49,19 @@ public class MilkTea extends MakingVendingMachine {
         this.count = count;
     }
 
+    private Thing milkTeaCategory(int idx) {
+        Thing black = new Thing(new BasicInfo<>(new StringBuilder("black"), 5000, "ICE"));
+        Thing taro = new Thing(new BasicInfo<>("taro", 4000, "ICE"));
+        Thing greenTea = new Thing(new BasicInfo<>("greenTea", 6000, "ICE"));
 
-
-
-    // 면에 뜨거운 물을 붓는다, 물을 버린다, 국물을 붓는다, 차슈를 올린다.
-
-
-
-    private Thing milkTeaCategory() {
-        Thing black = new Thing(new BasicInfo("black", 5000, "HOT"));
-        Thing taro = new Thing(new BasicInfo("taro", 4000, "ICE"));
-        Thing greenTea = new Thing(new BasicInfo("greenTea", 6000, "ICE"));
-        Thing[] categoryList = {black, taro, greenTea};
+        switch (idx) {
+            case 0:
+                return black;
+            case 1:
+                return taro;
+            case 2:
+                return greenTea;
+        }
 
         return black;
     }
@@ -73,7 +74,7 @@ public class MilkTea extends MakingVendingMachine {
 
         for (int i = 0; i < button; i++) {
             for (int j = 0; j < count; j++) {
-                milkTeaArray[i][j] = milkTeaCategory();
+                milkTeaArray[i][j] = milkTeaCategory(i);
             }
         }
         return milkTeaArray;

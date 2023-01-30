@@ -55,9 +55,9 @@ public class MagicBeverage extends FinishedVendingMachine {
 
 
     private Thing randomBeverageCategory() {
-        Thing coke = new Thing(new BasicInfo("펩시", 1000));
-        Thing water = new Thing(new BasicInfo("물", 700));
-        Thing sprite = new Thing(new BasicInfo("스프라이트", 1200));
+        Thing coke = new Thing(new BasicInfo<>("펩시", 1000));
+        Thing water = new Thing(new BasicInfo<>("물", 700));
+        Thing sprite = new Thing(new BasicInfo<>("스프라이트", 1200));
         Thing[] categoryList = {coke, water, sprite};
         int min = 0;
         int max = categoryList.length;
