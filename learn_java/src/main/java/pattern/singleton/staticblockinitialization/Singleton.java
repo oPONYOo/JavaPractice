@@ -1,4 +1,4 @@
-package singleton.staticblockinitialization;
+package pattern.singleton.staticblockinitialization;
 
 public class Singleton {
     /**

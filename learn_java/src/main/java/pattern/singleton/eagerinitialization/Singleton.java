@@ -1,4 +1,4 @@
-package singleton.eagerinitialization;
+package pattern.singleton.eagerinitialization;
 
 public class Singleton {
 /**
