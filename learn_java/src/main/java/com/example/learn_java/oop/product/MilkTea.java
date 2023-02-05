@@ -3,6 +3,7 @@ package com.example.learn_java.oop.product;
 import com.example.learn_java.oop.BasicInfo;
 import com.example.learn_java.oop.MakingVendingMachine;
 import com.example.learn_java.oop.ManyWays;
+import com.example.learn_java.oop.OptionalSomething;
 import com.example.learn_java.oop.Thing;
 import com.example.learn_java.oop.VendingMachine;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class MilkTea extends MakingVendingMachine {
+public class MilkTea extends MakingVendingMachine implements OptionalSomething<String> {
     private final Integer button;
     private final Integer count;
     private Thing[][] milkTeaArray;
@@ -19,7 +20,11 @@ public class MilkTea extends MakingVendingMachine {
         // 버튼 3개, 수량 10개씩, 현금, 카드 결제 가능
 
         ArrayList<String> ways = new ArrayList<>(Arrays.asList("CASH", "CARD"));
-        VendingMachine vendingMachine = new VendingMachine(new MilkTea(3, 3), new ManyWays(ways), "ICE");
+        VendingMachine<String, String> vendingMachine = new VendingMachine<>(new MilkTea(3, 3),
+                new ManyWays(ways),
+                "ICE",
+                "RobotArm");
+
         if (vendingMachine.fillingMachine()) {
             System.out.println(Arrays.deepToString(vendingMachine.getStocks()));
 
@@ -50,9 +55,9 @@ public class MilkTea extends MakingVendingMachine {
     }
 
     private Thing milkTeaCategory(int idx) {
-        Thing black = new Thing(new BasicInfo<>(new StringBuilder("black"), 5000, "ICE"));
-        Thing taro = new Thing(new BasicInfo<>("taro", 4000, "ICE"));
-        Thing greenTea = new Thing(new BasicInfo<>("greenTea", 6000, "ICE"));
+        Thing black = new Thing(new BasicInfo<>(new StringBuilder("black"), 5000, setTemp()));
+        Thing taro = new Thing(new BasicInfo<>("taro", 4000, setTemp()));
+        Thing greenTea = new Thing(new BasicInfo<>("greenTea", 6000, setTemp()));
 
         switch (idx) {
             case 0:
@@ -79,4 +84,12 @@ public class MilkTea extends MakingVendingMachine {
         }
         return milkTeaArray;
     }
+
+
+    @Override
+    public String setTemp() {
+        return "ICE";
+    }
+
+
 }

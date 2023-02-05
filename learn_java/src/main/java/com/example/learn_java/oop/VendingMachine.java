@@ -1,29 +1,35 @@
 package com.example.learn_java.oop;
 
 
+import com.example.learn_java.oop.product.MilkTea;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class VendingMachine {
+public class VendingMachine<T, R> {
     private VendingMachineFunc vendingMachineFunc;
     private Payments payments;
     private Thing[][] stocks;
     private ArrayList<String> paymentMethodList;
     public String paymentMethod;
     public int cash;
-    public String temperature;
+    private T temperature;
+    private R whatEver;
 
 
-    public VendingMachine(VendingMachineFunc vendingMachineFunc, Payments payments) {
+
+    public VendingMachine (VendingMachineFunc vendingMachineFunc, Payments payments) {
         this.vendingMachineFunc = vendingMachineFunc;
         this.payments = payments;
     }
 
-    public VendingMachine(VendingMachineFunc vendingMachineFunc, Payments payments, String temperature) {
+    public VendingMachine(VendingMachineFunc vendingMachineFunc, Payments payments, T temperature, R whatEver) {
+        System.out.println("주요기능 "+ temperature);
+        System.out.println("주요기능 "+ whatEver);
+        this.temperature = temperature;
         this.vendingMachineFunc = vendingMachineFunc;
         this.payments = payments;
-        this.temperature = temperature;
     }
 
     public Thing[][] getStocks() {
@@ -36,7 +42,7 @@ public class VendingMachine {
             for (int j = 0; j < checkStocks[0].length; j++) {
                 if (!Objects.equals(checkStock[j].getTemp(), temperature)) {
                     System.out.println("해당 자판기는 " + temperature + "만 취급합니다.");
-                    System.out.println("상품이 조건에 부합하지 않습니다. "+checkStock[j].getInfo());
+                    System.out.println("상품이 조건에 부합하지 않습니다. " + checkStock[j].getInfo());
                     return false;
                 }
             }
