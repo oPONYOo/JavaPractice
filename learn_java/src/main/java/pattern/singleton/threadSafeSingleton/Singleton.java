@@ -16,10 +16,14 @@ public class Singleton {
      * - synchronized블럭 사용하기
      * - 이는 getInstance() 메소드 수준에 lock을 걸지 않고 instance가 null인 경우에만
      *   synchronized가 동작하도록 한다.
+     * - 안드로이드에서 사용하기 이상적인 방법
+     *   ex) context등 런타임에 값 전달이 가능
      *
+     *
+     *   volatile키워드로 인스턴스의 원자성을 보장할 수 있다.
      *   */
 
-    private static Singleton instance;
+    private static volatile Singleton instance;
 
     private Singleton() {
     }
