@@ -1,13 +1,13 @@
 package com.example.learn_java.oop;
 
 
-import com.example.learn_java.oop.product.MilkTea;
+import com.example.learn_java.oop.product.Temperature;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class VendingMachine<T, R> {
+public class VendingMachine<T, R>  {
     private VendingMachineFunc vendingMachineFunc;
     private Payments payments;
     private Thing[][] stocks;
@@ -134,4 +134,10 @@ public class VendingMachine<T, R> {
 
     }
 
+
+    /*@Override
+    public String setTemp(VendingMachine vendingMachine) {
+        System.out.println("IS ICE?"+ vendingMachine.setTemp(this));
+        return vendingMachine.setTemp(this);
+    }*/
 }

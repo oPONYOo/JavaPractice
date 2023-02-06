@@ -1,28 +1,43 @@
 package com.example.learn_java.oop.product;
 
 import com.example.learn_java.oop.BasicInfo;
+import com.example.learn_java.oop.Cold;
 import com.example.learn_java.oop.FinishedVendingMachine;
 import com.example.learn_java.oop.ManyWays;
 import com.example.learn_java.oop.Thing;
 import com.example.learn_java.oop.VendingMachine;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
-import java.util.Scanner;
 
-public class MagicBeverage extends FinishedVendingMachine {
+public class MagicBeverage extends FinishedVendingMachine implements Cold {
     private final Integer button;
     private final Integer count;
     private Thing[][] beverageArray;
+
+    @Override
+    public Boolean setIce() {
+        return true;
+    }
+
+
+    @Override
+    public String setTemp(VendingMachine vendingMachine) {
+        if (setIce()) return "ICE";
+        else return "HOT";
+    }
+
     public static void main(String[] args) {
         // 버튼 3개, 수량 10개씩, 현금, 카드 결제 가능
 
         ArrayList<String> ways = new ArrayList<>(Arrays.asList("CASH", "CARD"));
-        VendingMachine vendingMachine = new VendingMachine(new MagicBeverage(3, 3), new ManyWays(ways));
+        MagicBeverage magicBeverage = new MagicBeverage(3, 3);
+        VendingMachine vendingMachine = new VendingMachine(magicBeverage, new ManyWays(ways));
+        magicBeverage.setTemp(vendingMachine);
+        System.out.println("IS ICE?"+ magicBeverage.setTemp(vendingMachine));
+
         if (vendingMachine.fillingMachine()) {
             System.out.println(Arrays.deepToString(vendingMachine.getStocks()));
 
@@ -79,6 +94,7 @@ public class MagicBeverage extends FinishedVendingMachine {
         }
         return beverageArray;
     }
+
 
 
 }
