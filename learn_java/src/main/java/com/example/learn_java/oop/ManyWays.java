@@ -1,9 +1,10 @@
 package com.example.learn_java.oop;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import com.example.learn_java.oop.fuction.Payments;
 
-public class ManyWays implements Payments{
+import java.util.ArrayList;
+
+public class ManyWays implements Payments {
     private ArrayList<String> ways = new ArrayList<>();
 
     public ManyWays(ArrayList<String> ways) {

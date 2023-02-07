@@ -1,8 +1,8 @@
 package com.example.learn_java.oop.product;
 
 import com.example.learn_java.oop.BasicInfo;
-import com.example.learn_java.oop.Cold;
 import com.example.learn_java.oop.FinishedVendingMachine;
+import com.example.learn_java.oop.fuction.Ice;
 import com.example.learn_java.oop.ManyWays;
 import com.example.learn_java.oop.Thing;
 import com.example.learn_java.oop.VendingMachine;
@@ -12,21 +12,25 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
-public class MagicBeverage extends FinishedVendingMachine implements Cold {
+public class MagicBeverage extends FinishedVendingMachine implements Ice {
     private final Integer button;
     private final Integer count;
-    private Thing[][] beverageArray;
 
     @Override
     public Boolean setIce() {
-        return true;
+        return false;
     }
 
 
     @Override
-    public String setTemp(VendingMachine vendingMachine) {
+    public String setTemp() {
         if (setIce()) return "ICE";
         else return "HOT";
+    }
+
+    @Override
+    public String setRobot() {
+        return null;
     }
 
     public static void main(String[] args) {
@@ -35,8 +39,6 @@ public class MagicBeverage extends FinishedVendingMachine implements Cold {
         ArrayList<String> ways = new ArrayList<>(Arrays.asList("CASH", "CARD"));
         MagicBeverage magicBeverage = new MagicBeverage(3, 3);
         VendingMachine vendingMachine = new VendingMachine(magicBeverage, new ManyWays(ways));
-        magicBeverage.setTemp(vendingMachine);
-        System.out.println("IS ICE?"+ magicBeverage.setTemp(vendingMachine));
 
         if (vendingMachine.fillingMachine()) {
             System.out.println(Arrays.deepToString(vendingMachine.getStocks()));
@@ -70,9 +72,9 @@ public class MagicBeverage extends FinishedVendingMachine implements Cold {
 
 
     private Thing randomBeverageCategory() {
-        Thing coke = new Thing(new BasicInfo<>("펩시", 1000));
-        Thing water = new Thing(new BasicInfo<>("물", 700));
-        Thing sprite = new Thing(new BasicInfo<>("스프라이트", 1200));
+        Thing coke = new Thing(new BasicInfo("펩시", 1000, setTemp()));
+        Thing water = new Thing(new BasicInfo("물", 700, setTemp()));
+        Thing sprite = new Thing(new BasicInfo("스프라이트", 1200, setTemp()));
         Thing[] categoryList = {coke, water, sprite};
         int min = 0;
         int max = categoryList.length;
@@ -85,7 +87,7 @@ public class MagicBeverage extends FinishedVendingMachine implements Cold {
     @Override
     public Thing[][] setCount() {
         System.out.println("setCount");
-        beverageArray = new Thing[button][count];
+        Thing[][] beverageArray = new Thing[button][count];
 
         for (int i = 0; i < button; i++) {
             for (int j = 0; j < count; j++) {
@@ -94,6 +96,7 @@ public class MagicBeverage extends FinishedVendingMachine implements Cold {
         }
         return beverageArray;
     }
+
 
 
 

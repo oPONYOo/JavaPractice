@@ -1,9 +1,10 @@
 package com.example.learn_java.oop.product;
 
 import com.example.learn_java.oop.BasicInfo;
+import com.example.learn_java.oop.fuction.Ice;
 import com.example.learn_java.oop.MakingVendingMachine;
 import com.example.learn_java.oop.ManyWays;
-import com.example.learn_java.oop.OptionalSomething;
+import com.example.learn_java.oop.fuction.OptionalSomething;
 import com.example.learn_java.oop.Thing;
 import com.example.learn_java.oop.VendingMachine;
 
@@ -11,19 +12,41 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class MilkTea extends MakingVendingMachine implements OptionalSomething<String> {
+public class MilkTea extends MakingVendingMachine implements OptionalSomething, Ice {
     private final Integer button;
     private final Integer count;
     private Thing[][] milkTeaArray;
+
+    @Override
+    public Boolean setIce() {
+        return true;
+    }
+
+
+    @Override
+    public String setTemp() {
+        if (setIce()) return "ICE";
+        else return "HOT";
+    }
+
+    @Override
+    public Boolean setRobotArm() {
+        return true;
+    }
+
+    @Override
+    public String setRobot() {
+        if (setRobotArm()) return "RobotArm";
+        else return "Nothing";
+    }
 
     public static void main(String[] args) {
         // 버튼 3개, 수량 10개씩, 현금, 카드 결제 가능
 
         ArrayList<String> ways = new ArrayList<>(Arrays.asList("CASH", "CARD"));
-        VendingMachine<String, String> vendingMachine = new VendingMachine<>(new MilkTea(3, 3),
-                new ManyWays(ways),
-                "ICE",
-                "RobotArm");
+        MilkTea milkTea = new MilkTea(3, 3);
+        VendingMachine vendingMachine = new VendingMachine(milkTea,
+                new ManyWays(ways));
 
         if (vendingMachine.fillingMachine()) {
             System.out.println(Arrays.deepToString(vendingMachine.getStocks()));
@@ -55,9 +78,9 @@ public class MilkTea extends MakingVendingMachine implements OptionalSomething<S
     }
 
     private Thing milkTeaCategory(int idx) {
-        Thing black = new Thing(new BasicInfo<>(new StringBuilder("black"), 5000, setTemp()));
-        Thing taro = new Thing(new BasicInfo<>("taro", 4000, setTemp()));
-        Thing greenTea = new Thing(new BasicInfo<>("greenTea", 6000, setTemp()));
+        Thing black = new Thing(new BasicInfo("black", 5000, setTemp()));
+        Thing taro = new Thing(new BasicInfo("taro", 4000, setTemp()));
+        Thing greenTea = new Thing(new BasicInfo("greenTea", 6000, setTemp()));
 
         switch (idx) {
             case 0:
@@ -83,12 +106,6 @@ public class MilkTea extends MakingVendingMachine implements OptionalSomething<S
             }
         }
         return milkTeaArray;
-    }
-
-
-    @Override
-    public String setTemp() {
-        return "ICE";
     }
 
 

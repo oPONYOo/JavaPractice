@@ -1,4 +1,6 @@
-package com.example.learn_java.oop;
+package com.example.learn_java.oop.fuction;
+
+import com.example.learn_java.oop.VendingMachine;
 
 import java.util.ArrayList;
 

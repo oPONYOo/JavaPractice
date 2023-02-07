@@ -1,33 +1,22 @@
 package com.example.learn_java.oop;
 
 
-import com.example.learn_java.oop.product.Temperature;
+import com.example.learn_java.oop.fuction.Payments;
+import com.example.learn_java.oop.fuction.VendingMachineFunc;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class VendingMachine<T, R>  {
-    private VendingMachineFunc vendingMachineFunc;
-    private Payments payments;
+public class VendingMachine  {
+    private final VendingMachineFunc vendingMachineFunc;
+    private final Payments payments;
     private Thing[][] stocks;
-    private ArrayList<String> paymentMethodList;
     public String paymentMethod;
     public int cash;
-    private T temperature;
-    private R whatEver;
 
 
-
-    public VendingMachine (VendingMachineFunc vendingMachineFunc, Payments payments) {
-        this.vendingMachineFunc = vendingMachineFunc;
-        this.payments = payments;
-    }
-
-    public VendingMachine(VendingMachineFunc vendingMachineFunc, Payments payments, T temperature, R whatEver) {
-        System.out.println("주요기능 "+ temperature);
-        System.out.println("주요기능 "+ whatEver);
-        this.temperature = temperature;
+    public VendingMachine(VendingMachineFunc vendingMachineFunc, Payments payments) {
         this.vendingMachineFunc = vendingMachineFunc;
         this.payments = payments;
     }
@@ -37,11 +26,12 @@ public class VendingMachine<T, R>  {
     }
 
     public Boolean fillingMachine() {
+        System.out.println("Additional1 "+ vendingMachineFunc.setTemp());
+        System.out.println("Additional2 "+ vendingMachineFunc.setRobot());
         Thing[][] checkStocks = vendingMachineFunc.fillingMachine(this);
         for (Thing[] checkStock : checkStocks) {
             for (int j = 0; j < checkStocks[0].length; j++) {
-                if (!Objects.equals(checkStock[j].getTemp(), temperature)) {
-                    System.out.println("해당 자판기는 " + temperature + "만 취급합니다.");
+                if (!Objects.equals(checkStock[j].getTemp(), vendingMachineFunc.setTemp())) {
                     System.out.println("상품이 조건에 부합하지 않습니다. " + checkStock[j].getInfo());
                     return false;
                 }
@@ -52,7 +42,7 @@ public class VendingMachine<T, R>  {
     }
 
     public void setPayments() { // 자판기 결제 방식 종류 세팅
-        paymentMethodList = payments.paymentMethod(this);
+        ArrayList<String> paymentMethodList = payments.paymentMethod(this);
         System.out.println("paymentsWay" + paymentMethodList);
     }
 
@@ -134,10 +124,4 @@ public class VendingMachine<T, R>  {
 
     }
 
-
-    /*@Override
-    public String setTemp(VendingMachine vendingMachine) {
-        System.out.println("IS ICE?"+ vendingMachine.setTemp(this));
-        return vendingMachine.setTemp(this);
-    }*/
 }

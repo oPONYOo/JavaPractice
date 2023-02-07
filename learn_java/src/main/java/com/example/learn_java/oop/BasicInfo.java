@@ -1,18 +1,20 @@
 package com.example.learn_java.oop;
 
+import com.example.learn_java.oop.fuction.Info;
+
 import java.util.Objects;
 
-public class BasicInfo<T extends CharSequence, M extends Integer> implements Info {
-    private final T name;
-    private final M price;
+public class BasicInfo implements Info {
+    private final String name;
+    private final Integer price;
     private String temperature;
 
-    public BasicInfo(T name, M price) { //일반적인 완제품 정보
+    public BasicInfo(String name, Integer price) { //일반적인 완제품 정보
         this.name = name;
         this.price = price;
     }
 
-    public BasicInfo(T name, M price, String temperature) {
+    public BasicInfo(String name, Integer price, String temperature) {
         this.name = name;
         this.price = price;
         this.temperature = temperature;

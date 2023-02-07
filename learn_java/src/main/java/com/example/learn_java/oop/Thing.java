@@ -1,6 +1,7 @@
 package com.example.learn_java.oop;
 
-import java.text.DecimalFormat;
+import com.example.learn_java.oop.fuction.Info;
+
 import java.util.Objects;
 
 public class Thing {

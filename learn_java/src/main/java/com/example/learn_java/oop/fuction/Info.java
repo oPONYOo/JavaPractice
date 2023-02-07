@@ -1,4 +1,4 @@
-package com.example.learn_java.oop;
+package com.example.learn_java.oop.fuction;
 
 public interface Info {
     int showPrice();
